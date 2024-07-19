@@ -1,0 +1,175 @@
+{% extends 'base.html' %} 
+{% block title %} Home {% endblock title %} 
+{% block body %}
+
+<div class="flex flex-col items-center justify-center p-12">
+  <!-- Author: FormBold Team -->
+  <!-- Learn More: https://formbold.com -->
+  <h2 class="text-4xl font-semibold text-[#6A64F1] mb-4 font montserrat">
+    Add Your Contact
+  </h2>
+  <div class="mx-auto w-full max-w-[550px]">
+    <form action="/" method="POST">
+      <div class="mb-5">
+        <label
+          for="name"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Full Name
+        </label>
+        <input
+          type="text"
+          name="name"
+          id="name"
+          placeholder="Full Name"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          required
+        />
+      </div>
+      <div class="mb-5">
+        <label
+          for="email"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Email Address
+        </label>
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="example@domain.com"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          required
+        />
+      </div>
+      <div class="mb-5">
+        <label
+          for="phone"
+          class="mb-3 block text-base font-medium text-[#07074D]"
+        >
+          Phone Number
+        </label>
+        <input
+          type="text"
+          name="phone"
+          id="phone"
+          placeholder="Enter your Phone Number"
+          class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
+          required
+        />
+      </div>
+
+      <div>
+        <button
+          type="submit"
+          class="hover:shadow-form rounded-md bg-[#6A64F1] py-3 px-8 text-base font-semibold text-white outline-none"
+        >
+          Submit
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="flex flex-col">
+  <div class="overflow-x-auto sm:mx-0.5 lg:mx-0.5">
+    <div class="py-2 inline-block min-w-full sm:px-6 lg:px-8">
+      <h2 class="text-4xl font-semibold text-[#6A64F1] mb-4 font montserrat">
+        Contacts Table
+      </h2>
+
+      <div class="overflow-hidden">
+        <table class="min-w-full">
+          <thead class="bg-gray-200 border-b">
+            <tr>
+              <th
+                scope="col"
+                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              >
+                #
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              >
+                Name
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              >
+                Email
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              >
+                Phone Number
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              >
+                Created Date
+              </th>
+              <th
+                scope="col"
+                class="text-sm font-medium text-gray-900 px-6 py-4 text-left"
+              >
+                Actions
+              </th>
+            </tr>
+          </thead>
+
+          <tbody>
+            {% for contact in contacts %}
+            <tr
+              class="bg-white border-b transition duration-300 ease-in-out hover:bg-gray-100"
+            >
+              <td
+                class="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900"
+              >
+                {{loop.index}}
+              </td>
+              <td
+                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+              >
+                {{contact.name}}
+              </td>
+              <td
+                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+              >
+                {{contact.email}}
+              </td>
+              <td
+                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+              >
+                {{contact.phone}}
+              </td>
+              <td
+                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+              >
+                {{contact.date_created}}
+              </td>
+              <td
+                class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap"
+              >
+                <a
+                  href="/update/{{contact.id}}"
+                  class="px-2 cursor-pointer py-1 no-underline text-inherit rounded-md border-2 border-black"
+                  >update</a
+                >
+                <a
+                  href="/delete/{{contact.id}}"
+                  class="px-2 cursor-pointer py-1 no-underline text-inherit rounded-md border-2 border-black"
+                  >delete</a
+                >
+              </td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock body %}
